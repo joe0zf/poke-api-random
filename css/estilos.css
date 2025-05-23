@@ -1,3 +1,21 @@
+.light-mode {
+  --main-bg-gradient-start: #a234a1;
+  --main-bg-gradient-end: #e12345;
+  --main-text-color: white;
+  --main-shadow-color: rgba(0, 0, 0, 0.5);
+  --button-text-color: black;
+  --button-bg-color: #f0f0f0;
+}
+
+.dark-mode {
+  --main-bg-gradient-start: #2c3e50;
+  --main-bg-gradient-end: #1a252f;
+  --main-text-color: #ecf0f1;
+  --main-shadow-color: rgba(255, 255, 255, 0.2);
+  --button-text-color: white;
+  --button-bg-color: #34495e;
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -11,14 +29,14 @@ body {
 }
 #contenedor {
   width: 50%;
-  background-image: linear-gradient(#a234a1, #e12345);
+  background-image: linear-gradient(var(--main-bg-gradient-start, #a234a1), var(--main-bg-gradient-end, #e12345)); /* Fallbacks added */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--main-text-color, white); /* Fallback added */
   padding: 2em;
-  box-shadow: 0px 0px 20px #000;
+  box-shadow: 0px 0px 20px var(--main-shadow-color, rgba(0, 0, 0, 0.5)); /* Fallback added */
 }
 #contenedor img {
   width: 50%;
@@ -34,4 +52,22 @@ body {
   margin-top: 1em;
   font-size: 1.5em;
   cursor: pointer;
+  color: var(--button-text-color, black); /* Fallback added */
+  background-color: var(--button-bg-color, #f0f0f0); /* Fallback added */
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+}
+
+#theme-switcher {
+  padding: 0.5em 1em;
+  border: 1px solid var(--button-text-color, black);
+  background-color: var(--button-bg-color, #f0f0f0);
+  color: var(--button-text-color, black);
+  cursor: pointer;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
 }

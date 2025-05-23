@@ -42,3 +42,33 @@ const aleatorio_entre = (min, max) => {
 };
 
 traer_datos(1);
+
+// Theme Switcher Logic
+const themeSwitcherButton = document.getElementById('theme-switcher');
+const bodyElement = document.body;
+
+function applyTheme(theme) {
+  bodyElement.classList.remove('light-mode', 'dark-mode'); // Remove any existing theme class
+  if (theme === 'dark') {
+    bodyElement.classList.add('dark-mode');
+  } else {
+    bodyElement.classList.add('light-mode');
+  }
+}
+
+// Load saved theme or default to light
+let savedTheme = localStorage.getItem('theme');
+if (!savedTheme) {
+  savedTheme = 'light'; // Default to light
+  localStorage.setItem('theme', savedTheme); // Save the default
+}
+applyTheme(savedTheme);
+
+// Event listener for the button
+if (themeSwitcherButton) { // Check if button exists
+  themeSwitcherButton.addEventListener('click', () => {
+    let newTheme = bodyElement.classList.contains('light-mode') ? 'dark' : 'light';
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}
